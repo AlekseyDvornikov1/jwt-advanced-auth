@@ -1,5 +1,7 @@
 import { User } from './../models/user.modal.js';
 import { ApiExeption } from './../exeptions/api.exeption.js';
+import { tokenService } from '../services/token.service.js';
+import { userService } from '../services/user.service.js';
 
 class UserController {
 
@@ -53,15 +55,9 @@ class UserController {
 
     async activate(req, res, next) {
         try {
-            //TODO: service
             let user = await User.findOne({ activationLink: req.params.link });
-            if (!user) {
-                throw ApiExeption.BadRequest('Link does not exist');
-            }
-    
-            user.isActivated = true;
-    
-            await user.save();
+
+            userService.activaterUser(user)
     
             res.redirect(process.env.CLIENT_URL);
         } catch (e) {
