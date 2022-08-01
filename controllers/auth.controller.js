@@ -33,7 +33,6 @@ class AuthController {
             res.cookie('refreshToken', refreshToken, {httpOnly: true, maxAge: 30*24*60*60});
 
             res.json({
-                refreshToken,
                 accessToken,
                 user: {...userDto}
             });
@@ -63,7 +62,6 @@ class AuthController {
             res.cookie('refreshToken', refreshToken, {httpOnly: true, maxAge: 30*24*60*60});
     
             res.json({
-                refreshToken,
                 accessToken,
                 user: {...userDto}
             });
@@ -113,7 +111,6 @@ class AuthController {
             res.cookie('refreshToken', newRefreshToken, {httpOnly: true, maxAge: 30*24*60*60});
     
             res.json({
-                newRefreshToken,
                 accessToken,
                 user: {...userDto}
             });
